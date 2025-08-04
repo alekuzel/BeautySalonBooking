@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using BeautySalonBooking.Data;        // for _context
-using BeautySalonBooking.Models;      // for Booking
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
+using BeautySalonBooking.Data;
+using BeautySalonBooking.Models;
 
 namespace BeautySalonBooking.Controllers
 {
@@ -15,13 +15,22 @@ namespace BeautySalonBooking.Controllers
             _context = context;
         }
 
+        // GET: /Home/Index
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: /Home/Book
         public IActionResult Book()
         {
             ViewData["Services"] = new SelectList(_context.Services, "Id", "Name");
             return View();
         }
 
+        // POST: /Home/Book
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Book(Booking booking)
         {
             if (ModelState.IsValid)
@@ -35,6 +44,7 @@ namespace BeautySalonBooking.Controllers
             return View(booking);
         }
 
+        // GET: /Home/ThankYou
         public IActionResult ThankYou()
         {
             return View();
