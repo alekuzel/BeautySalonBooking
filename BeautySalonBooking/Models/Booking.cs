@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace BeautySalonBooking.Models
@@ -7,16 +8,26 @@ namespace BeautySalonBooking.Models
         public int Id { get; set; }
 
         [Required]
-        public string CustomerName { get; set; }
-
-        [Required, EmailAddress]
-        public string CustomerEmail { get; set; }
-
-        [Required]
-        public DateTime AppointmentDateTime { get; set; }
-
         public int ServiceId { get; set; }
 
-        public Service? Service { get; set; }
+        [Required]
+        public DateTime DateTime { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string LastName { get; set; }
+
+        [Phone]
+        public string Phone { get; set; }
+
+        [EmailAddress]
+        public string Email { get; set; }
+
+        // Navigation property (valfri)
+        public Service Service { get; set; }
     }
 }
