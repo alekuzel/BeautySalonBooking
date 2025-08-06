@@ -15,37 +15,39 @@ namespace BeautySalonBooking.Controllers
             _context = context;
         }
 
-        // GET: Booking/Create
-        public IActionResult Create(int? serviceId)
-        {
-            ViewData["Services"] = new SelectList(_context.Services, "Id", "Name", serviceId);
-            var booking = new Booking
-            {
-                ServiceId = serviceId ?? 0,
-                DateTime = DateTime.Now.AddDays(1) // default date
-            };
-            return View(booking);
-        }
+        public IActionResult Create(int serviceId)
+{
+    var service = _context.Services.FirstOrDefault(s => s.Id == serviceId);
+    if (service == null)
+    {
+        return NotFound();
+    }
 
-        // POST: Booking/Create
+    var booking = new Booking
+    {
+        ServiceId = serviceId,
+        Service = service,
+        Date = DateTime.Today.AddDays(1) // 👈 Set default to tomorrow
+    };
+
+    ViewData["Services"] = new SelectList(_context.Services, "Id", "Name", serviceId);
+    return View(booking);
+}
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Booking booking)
         {
             if (ModelState.IsValid)
             {
-                _context.Bookings.Add(booking);
+                _context.Add(booking);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("ThankYou");
+                return RedirectToAction("ThankYou", "Home");
             }
 
             ViewData["Services"] = new SelectList(_context.Services, "Id", "Name", booking.ServiceId);
             return View(booking);
-        }
-
-        public IActionResult ThankYou()
-        {
-            return View();
         }
     }
 }

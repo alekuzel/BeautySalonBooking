@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using BeautySalonBooking.Data;
-using System.Linq;
+using BeautySalonBooking.Models;
+using System.Threading.Tasks;
 
 namespace BeautySalonBooking.Controllers
 {
+    [Authorize] // kräver inloggning
     public class ServiceController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -13,10 +16,25 @@ namespace BeautySalonBooking.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        // GET: /Service/Create
+        public IActionResult Create()
         {
-            var services = _context.Services.ToList();
-            return View(services);
+            return View();
+        }
+
+        // POST: /Service/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Service service)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Services.Add(service);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home"); // t.ex. tillbaka till startsidan
+            }
+
+            return View(service);
         }
     }
 }

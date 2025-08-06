@@ -11,7 +11,9 @@ namespace BeautySalonBooking.Models
         public int ServiceId { get; set; }
 
         [Required]
-        public DateTime DateTime { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime Date { get; set; }
+
 
         [Required]
         [StringLength(50)]
