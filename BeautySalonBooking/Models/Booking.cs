@@ -9,6 +9,7 @@ namespace BeautySalonBooking.Models
 
         [Required]
         public int ServiceId { get; set; }
+        public Service Service { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]
@@ -30,6 +31,6 @@ namespace BeautySalonBooking.Models
         public string Email { get; set; }
 
         // Navigation property (valfri)
-        public Service Service { get; set; }
+        public Service Name { get; set; }
     }
 }

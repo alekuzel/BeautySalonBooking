@@ -20,29 +20,41 @@ namespace BeautySalonBooking.Controllers.Admin
         // GET: Admin/Booking
         public async Task<IActionResult> Index()
         {
-            var bookings = await _context.Bookings.Include(b => b.Service).ToListAsync();
+            var bookings = await _context.Bookings.Include(b => b.Name).ToListAsync();
             return View(bookings);
         }
 
         // GET: Booking/Create?serviceId=1
-        public IActionResult Create(int serviceId)
+        public IActionResult Create(int? serviceId)
         {
-            var service = _context.Services.FirstOrDefault(s => s.Id == serviceId);
-            if (service == null)
+            if (serviceId.HasValue)
             {
-                return NotFound();
+                var service = _context.Services.FirstOrDefault(s => s.Id == serviceId.Value);
+                if (service == null)
+                {
+                    return NotFound();
+                }
+
+                var booking = new Booking
+                {
+                    ServiceId = service.Id,
+                    Name = service,
+                    Date = DateTime.Now.AddDays(1)
+                };
+
+                ViewData["Service"] = service;
+                return View(booking);
             }
 
-            var booking = new Booking
+            // If no specific serviceId is provided, load all services
+            ViewData["Services"] = new SelectList(_context.Services, "Id", "Name");
+            var newBooking = new Booking
             {
-                ServiceId = service.Id,
-                Service = service,
                 Date = DateTime.Now.AddDays(1)
             };
-
-            ViewData["Service"] = service;
-            return View(booking);
+            return View(newBooking);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Create(Booking booking)
@@ -50,6 +62,8 @@ namespace BeautySalonBooking.Controllers.Admin
             if (ModelState.IsValid)
             {
                 _context.Bookings.Add(booking);
+                Console.WriteLine($"Saving booking for: {booking.FirstName}, serviceId: {booking.ServiceId}");
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction("ThankYou", "Booking");
             }
@@ -99,7 +113,7 @@ namespace BeautySalonBooking.Controllers.Admin
             if (id == null) return NotFound();
 
             var booking = await _context.Bookings
-                .Include(b => b.Service)
+                .Include(b => b.Name)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (booking == null) return NotFound();
