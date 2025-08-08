@@ -20,57 +20,68 @@ namespace BeautySalonBooking.Controllers.Admin
         // GET: Admin/Booking
         public async Task<IActionResult> Index()
         {
-            var bookings = await _context.Bookings.Include(b => b.Name).ToListAsync();
+            var bookings = await _context.Bookings.Include(b => b.Service).ToListAsync();
             return View(bookings);
         }
 
         // GET: Booking/Create?serviceId=1
-        public IActionResult Create(int? serviceId)
+        // GET: Booking/Create?serviceId=1
+public IActionResult Create(int? serviceId)
+{
+    if (serviceId.HasValue)
+    {
+        var service = _context.Services.FirstOrDefault(s => s.Id == serviceId.Value);
+        if (service == null)
         {
-            if (serviceId.HasValue)
-            {
-                var service = _context.Services.FirstOrDefault(s => s.Id == serviceId.Value);
-                if (service == null)
-                {
-                    return NotFound();
-                }
-
-                var booking = new Booking
-                {
-                    ServiceId = service.Id,
-                    Name = service,
-                    Date = DateTime.Now.AddDays(1)
-                };
-
-                ViewData["Service"] = service;
-                return View(booking);
-            }
-
-            // If no specific serviceId is provided, load all services
-            ViewData["Services"] = new SelectList(_context.Services, "Id", "Name");
-            var newBooking = new Booking
-            {
-                Date = DateTime.Now.AddDays(1)
-            };
-            return View(newBooking);
+            return NotFound();
         }
 
-
-        [HttpPost]
-        public async Task<IActionResult> Create(Booking booking)
+        var booking = new Booking
         {
-            if (ModelState.IsValid)
-            {
-                _context.Bookings.Add(booking);
-                Console.WriteLine($"Saving booking for: {booking.FirstName}, serviceId: {booking.ServiceId}");
+            ServiceId = service.Id,
+            Date = DateTime.Now.AddDays(1)
+        };
 
-                await _context.SaveChangesAsync();
-                return RedirectToAction("ThankYou", "Booking");
-            }
+        ViewData["Service"] = service;
+        return View(booking);
+    }
 
-            ViewData["Service"] = await _context.Services.FindAsync(booking.ServiceId);
-            return View(booking);
+    // This is the part likely broken or skipped
+    var services = _context.Services.ToList(); // Fetch the data
+    ViewData["Services"] = new SelectList(services, "Id", "ServiceName"); // Not "Name"
+    
+    var newBooking = new Booking
+    {
+        Date = DateTime.Now.AddDays(1)
+    };
+    return View(newBooking);
+}
+
+
+     [HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Create(Booking booking)
+{
+    if (ModelState.IsValid)
+    {
+        Console.WriteLine($"Booking for {booking.FirstName} - ServiceId: {booking.ServiceId} - Date: {booking.Date}");
+        _context.Bookings.Add(booking);
+        await _context.SaveChangesAsync();
+        return RedirectToAction("ThankYou");
+    }
+
+    Console.WriteLine("Model is NOT valid!");
+    foreach (var modelState in ViewData.ModelState.Values)
+    {
+        foreach (var error in modelState.Errors)
+        {
+            Console.WriteLine(error.ErrorMessage);
         }
+    }
+
+    return View(booking);
+}
+
 
         public IActionResult ThankYou()
         {
@@ -85,7 +96,7 @@ namespace BeautySalonBooking.Controllers.Admin
             var booking = await _context.Bookings.FindAsync(id);
             if (booking == null) return NotFound();
 
-            ViewData["Services"] = new SelectList(_context.Services, "Id", "Name", booking.ServiceId);
+            ViewData["Services"] = new SelectList(_context.Services, "Id", "ServiceName", booking.ServiceId);
             return View(booking);
         }
 
@@ -103,7 +114,7 @@ namespace BeautySalonBooking.Controllers.Admin
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["Services"] = new SelectList(_context.Services, "Id", "Name", booking.ServiceId);
+            ViewData["Services"] = new SelectList(_context.Services, "Id", "ServiceName", booking.ServiceId);
             return View(booking);
         }
 
@@ -113,7 +124,7 @@ namespace BeautySalonBooking.Controllers.Admin
             if (id == null) return NotFound();
 
             var booking = await _context.Bookings
-                .Include(b => b.Name)
+                .Include(b => b.Service)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (booking == null) return NotFound();

@@ -63,11 +63,11 @@ namespace BeautySalonBooking.Migrations
                     b.Property<int>("DurationMinutes")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Price")
+                    b.Property<string>("ServiceName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -273,13 +273,13 @@ namespace BeautySalonBooking.Migrations
 
             modelBuilder.Entity("BeautySalonBooking.Models.Booking", b =>
                 {
-                    b.HasOne("BeautySalonBooking.Models.Service", "Service")
+                    b.HasOne("BeautySalonBooking.Models.Service", "ServiceName")
                         .WithMany()
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Service");
+                    b.Navigation("ServiceName");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

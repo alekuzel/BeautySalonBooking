@@ -18,7 +18,7 @@ namespace BeautySalonBooking.Controllers
         public async Task<IActionResult> Bookings()
         {
             var bookings = await _context.Bookings
-                .Include(b => b.Name)
+                .Include(b => b.ServiceId)
                 .ToListAsync();
 
             return View(bookings);

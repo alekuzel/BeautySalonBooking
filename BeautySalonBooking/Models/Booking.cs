@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BeautySalonBooking.Models
 {
@@ -8,13 +9,14 @@ namespace BeautySalonBooking.Models
         public int Id { get; set; }
 
         [Required]
-        public int ServiceId { get; set; }
-        public Service Service { get; set; }
+        public int ServiceId { get; set; }  // FK property
+
+        // Navigation property
+        public Service Service { get; set; }  
 
         [Required]
         [DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
-
 
         [Required]
         [StringLength(50)]
@@ -29,8 +31,5 @@ namespace BeautySalonBooking.Models
 
         [EmailAddress]
         public string Email { get; set; }
-
-        // Navigation property (valfri)
-        public Service Name { get; set; }
     }
 }
