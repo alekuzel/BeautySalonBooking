@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace BeautySalonBooking.Models
 {
@@ -12,6 +13,7 @@ namespace BeautySalonBooking.Models
         public int ServiceId { get; set; }  // FK property
 
         // Navigation property
+        [ValidateNever]
         public Service Service { get; set; }  
 
         [Required]

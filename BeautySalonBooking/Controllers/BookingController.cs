@@ -21,6 +21,7 @@ namespace BeautySalonBooking.Controllers.Admin
         public async Task<IActionResult> Index()
         {
             var bookings = await _context.Bookings.Include(b => b.Service).ToListAsync();
+
             return View(bookings);
         }
 
@@ -28,59 +29,53 @@ namespace BeautySalonBooking.Controllers.Admin
         // GET: Booking/Create?serviceId=1
 public IActionResult Create(int? serviceId)
 {
-    if (serviceId.HasValue)
+    if (serviceId == null)
+        return BadRequest();
+
+    var service = _context.Services.FirstOrDefault(s => s.Id == serviceId.Value);
+    if (service == null)
+        return NotFound();
+
+    var booking = new Booking
     {
-        var service = _context.Services.FirstOrDefault(s => s.Id == serviceId.Value);
-        if (service == null)
+        ServiceId = service.Id,         // set the service id here!
+        Date = DateTime.Now.AddDays(1)
+    };
+
+    ViewData["Service"] = service;
+
+    return View(booking);
+}
+
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Create(Booking booking)
+{
+    if (!ModelState.IsValid)
+    {
+        Console.WriteLine("ModelState errors:");
+        foreach (var entry in ModelState)
         {
-            return NotFound();
+            var key = entry.Key;
+            var errors = entry.Value.Errors;
+            foreach (var error in errors)
+            {
+                Console.WriteLine($"Field: {key} - Error: {error.ErrorMessage}");
+            }
         }
-
-        var booking = new Booking
-        {
-            ServiceId = service.Id,
-            Date = DateTime.Now.AddDays(1)
-        };
-
+        
+        var service = _context.Services.FirstOrDefault(s => s.Id == booking.ServiceId);
         ViewData["Service"] = service;
         return View(booking);
     }
 
-    // This is the part likely broken or skipped
-    var services = _context.Services.ToList(); // Fetch the data
-    ViewData["Services"] = new SelectList(services, "Id", "ServiceName"); // Not "Name"
-    
-    var newBooking = new Booking
-    {
-        Date = DateTime.Now.AddDays(1)
-    };
-    return View(newBooking);
+    _context.Bookings.Add(booking);
+    await _context.SaveChangesAsync();
+    return RedirectToAction("ThankYou");
 }
 
 
-     [HttpPost]
-[ValidateAntiForgeryToken]
-public async Task<IActionResult> Create(Booking booking)
-{
-    if (ModelState.IsValid)
-    {
-        Console.WriteLine($"Booking for {booking.FirstName} - ServiceId: {booking.ServiceId} - Date: {booking.Date}");
-        _context.Bookings.Add(booking);
-        await _context.SaveChangesAsync();
-        return RedirectToAction("ThankYou");
-    }
-
-    Console.WriteLine("Model is NOT valid!");
-    foreach (var modelState in ViewData.ModelState.Values)
-    {
-        foreach (var error in modelState.Errors)
-        {
-            Console.WriteLine(error.ErrorMessage);
-        }
-    }
-
-    return View(booking);
-}
 
 
         public IActionResult ThankYou()
