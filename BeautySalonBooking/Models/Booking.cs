@@ -14,7 +14,7 @@ namespace BeautySalonBooking.Models
 
         // Navigation property
         [ValidateNever]
-        public Service Service { get; set; }  
+        public Service Service { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]
@@ -33,5 +33,9 @@ namespace BeautySalonBooking.Models
 
         [EmailAddress]
         public string Email { get; set; }
+        [MaxLength(500)]
+         public string? Comment { get; set; }
+
     }
+    
 }

@@ -84,16 +84,20 @@ public async Task<IActionResult> Create(Booking booking)
         }
 
         // GET: Admin/Booking/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null) return NotFound();
+       public async Task<IActionResult> Edit(int? id)
+{
+    if (id == null) return NotFound();
 
-            var booking = await _context.Bookings.FindAsync(id);
-            if (booking == null) return NotFound();
+    var booking = await _context.Bookings
+        .Include(b => b.Service) // Load the related Service
+        .FirstOrDefaultAsync(b => b.Id == id);
 
-            ViewData["Services"] = new SelectList(_context.Services, "Id", "ServiceName", booking.ServiceId);
-            return View(booking);
-        }
+    if (booking == null) return NotFound();
+
+    ViewData["Services"] = new SelectList(_context.Services, "Id", "ServiceName", booking.ServiceId);
+    return View(booking);
+}
+
 
         // POST: Admin/Booking/Edit/5
         [HttpPost]

@@ -1,0 +1,35 @@
+@model BeautySalonBooking.Models.Booking
+
+@{
+    ViewData["Title"] = "Delete Booking";
+}
+
+<h2>Ta bort bokning</h2>
+
+<h3>Är du säker på att du vill ta bort denna bokning?</h3>
+
+<div>
+    <h4>Bokningsdetaljer</h4>
+    <dl class="row">
+        <dt class="col-sm-2">Tjänst</dt>
+        <dd class="col-sm-10">@Model.Service?.ServiceName</dd>
+
+        <dt class="col-sm-2">Datum</dt>
+        <dd class="col-sm-10">@Model.Date.ToString("g")</dd>
+
+        <dt class="col-sm-2">Kund</dt>
+        <dd class="col-sm-10">@Model.FirstName @Model.LastName</dd>
+
+        <dt class="col-sm-2">Telefon</dt>
+        <dd class="col-sm-10">@Model.Phone</dd>
+
+        <dt class="col-sm-2">E-post</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+    </dl>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Ta bort</button>
+    <a asp-action="Index" class="btn btn-secondary">Avbryt</a>
+</form>
