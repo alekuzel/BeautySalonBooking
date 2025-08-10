@@ -36,5 +36,14 @@ namespace BeautySalonBooking.Controllers
 
             return View(service);
         }
+
+        // GET: /Service
+[AllowAnonymous] // So non-logged in users can see it
+public IActionResult Index()
+{
+    var services = _context.Services.ToList();
+    return View(services);
+}
+
     }
 }

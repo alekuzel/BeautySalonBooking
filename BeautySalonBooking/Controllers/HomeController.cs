@@ -17,4 +17,10 @@ public class HomeController : Controller
         var services = await _context.Services.ToListAsync();
         return View(services);
     }
+
+    public IActionResult About()
+    {
+    return View();
+    }
+
 }

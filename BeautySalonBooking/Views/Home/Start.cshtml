@@ -1,0 +1,32 @@
+@model IEnumerable<BeautySalonBooking.Models.Service>
+
+@{
+    ViewData["Title"] = "Services";
+}
+
+<h2>Våra Tjänster</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tjänst</th>
+            <th>Varaktighet</th>
+            <th>Pris</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ServiceName</td>
+            <td>@item.DurationMinutes minuter</td>
+            <td>@item.Price.ToString("0.00") kr</td>
+            <td>
+                <a asp-controller="Booking" asp-action="Create" asp-route-serviceId="@item.Id" class="btn btn-primary">Boka</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+

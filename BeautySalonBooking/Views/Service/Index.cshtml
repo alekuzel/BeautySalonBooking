@@ -23,7 +23,7 @@
             <td>@service.Price.ToString("0.00")</td>
             <td>@service.DurationMinutes</td>
             <td>
-                <a class="btn btn-success" href="@Url.Action("Create", "Booking", new { serviceId = service.Id })">Boka</a>
+                <a class="btn btn-success" href="@Url.Action("WeekView", "Booking", new { serviceId = service.Id })">Boka</a>
             </td>
         </tr>
     }

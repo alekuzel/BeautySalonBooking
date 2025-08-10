@@ -1,0 +1,112 @@
+@model BeautySalonBooking.Models.WeekViewModel
+
+@{
+    var now = DateTime.Now;
+    var monthRange = Model.WeekDays.Select(d => d.ToString("MMMM yyyy")).Distinct();
+    var monthDisplay = string.Join(" - ", monthRange);
+}
+
+<style>
+    .week-calendar table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    .week-calendar th {
+        background: #f8f8f8;
+        padding: 10px;
+        text-align: center;
+    }
+    .week-calendar td {
+        border: 1px solid #ccc;
+        text-align: center;
+        padding: 15px;
+    }
+    .week-calendar td.booked {
+        background-color: #eee;
+        color: #888;
+    }
+    .week-calendar td.past {
+        background-color: #f0f0f0;
+        color: #aaa;
+    }
+    .week-calendar td a {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #006699;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+    .week-calendar td a.disabled {
+        background-color: #ccc;
+        pointer-events: none;
+        cursor: default;
+    }
+    .nav-buttons {
+        margin-bottom: 15px;
+    }
+
+    .week-calendar td.booked {
+    background-color: #f0f0f0;
+    color: #aaa;
+    cursor: default;
+    pointer-events: none; /* prevent clicking */
+    user-select: none;
+}
+
+</style>
+
+<h2>Veckans tillgängliga tider för @Model.ServiceName</h2>
+<h3>@monthDisplay</h3>
+
+<div class="nav-buttons">
+    <a class="btn btn-secondary" href="@Url.Action("WeekView", "Booking", new { serviceId = Model.ServiceId, weekOffset = Model.WeekOffset - 1 })">Föregående vecka</a>
+    <a class="btn btn-secondary" href="@Url.Action("WeekView", "Booking", new { serviceId = Model.ServiceId, weekOffset = Model.WeekOffset + 1 })">Nästa vecka</a>
+</div>
+
+<div class="week-calendar">
+    <table>
+        <thead>
+            <tr>
+                @foreach (var day in Model.WeekDays)
+                {
+                    <th>@day.ToString("ddd dd")</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+        @for (int hour = 9; hour <= 17; hour++)
+{
+    <tr>
+        @foreach (var day in Model.WeekDays)
+        {
+            var slotStart = day.Date.AddHours(hour);
+            var booking = Model.Bookings.FirstOrDefault(b => b.Date == slotStart);
+
+            bool isPast = slotStart < DateTime.Now;
+
+            if (booking != null || isPast)
+            {
+                // Pale and non-clickable
+                <td class="booked" style="color: #aaa; background-color: #f0f0f0;">
+                    @($"{hour}-{hour + 1}") @if(booking != null) { <text>- Booked</text> } else { <text>- Passed</text> }
+                </td>
+            }
+            else
+            {
+                // Available slot clickable
+                <td>
+                    <a href="@Url.Action("Create", "Booking", new { serviceId = Model.ServiceId, date = slotStart.ToString("o") })">
+                        @($"{hour}-{hour + 1}") - Available
+                    </a>
+                </td>
+            }
+        }
+    </tr>
+}
+
+
+
+        </tbody>
+    </table>
+</div>
