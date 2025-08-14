@@ -1,0 +1,36 @@
+@model List<BeautySalonBooking.Models.Service>
+
+@{
+    ViewData["Title"] = "Hantera tjänster";
+}
+
+<h1>Hantera tjänster</h1>
+
+<a class="btn btn-primary mb-3" href="@Url.Action("Create", "Service")">Skapa ny tjänst</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Namn</th>
+            <th>Pris (kr)</th>
+            <th>Varaktighet (min)</th>
+            <th>Beskrivning</th>
+            <th>Åtgärder</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var service in Model)
+    {
+        <tr>
+            <td>@service.ServiceName</td>
+            <td>@service.Price.ToString("0.00")</td>
+            <td>@service.DurationMinutes</td>
+            <td>@service.Description</td>
+            <td>
+                <a class="btn btn-warning btn-sm" href="@Url.Action("Edit", "Service", new { id = service.Id })">Redigera</a>
+                <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", "Service", new { id = service.Id })">Ta bort</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
