@@ -84,6 +84,14 @@ namespace BeautySalonBooking.Controllers
             return View(service);
         }
 
+        [Authorize] // Only logged in users can manage
+public IActionResult Manage()
+{
+    var services = _context.Services.ToList();
+    return View(services);
+}
+
+
         // GET: /Service/Delete/5
         public IActionResult Delete(int id)
         {

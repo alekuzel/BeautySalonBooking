@@ -11,5 +11,8 @@ namespace BeautySalonBooking.Data
 
         public DbSet<Service> Services { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+
+        public DbSet<AboutPage> AboutPages { get; set; }
+
     }
 }
