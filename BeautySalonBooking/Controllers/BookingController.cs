@@ -25,29 +25,29 @@ namespace BeautySalonBooking.Controllers.Admin
             return View(bookings);
         }
 
-[HttpGet]
-[AllowAnonymous]
-public IActionResult Create(int serviceId, DateTime? date)
-{
-    var service = _context.Services.FirstOrDefault(s => s.Id == serviceId);
-    if (service == null)
-    {
-        return NotFound();
-    }
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Create(int serviceId, DateTime? date)
+        {
+            var service = _context.Services.FirstOrDefault(s => s.Id == serviceId);
+            if (service == null)
+            {
+                return NotFound();
+            }
 
-    var model = new Booking
-    {
-        ServiceId = serviceId,
-        Date = date ?? DateTime.Now
-    };
+            var model = new Booking
+            {
+                ServiceId = serviceId,
+                Date = date ?? DateTime.Now
+            };
 
-    ViewData["Service"] = service;
-    return View(model);
-}
+            ViewData["Service"] = service;
+            return View(model);
+        }
 
 
         [HttpPost]
-       [AllowAnonymous]
+        [AllowAnonymous]
         public async Task<IActionResult> Create(Booking booking)
         {
             if (!ModelState.IsValid)
@@ -139,39 +139,49 @@ public IActionResult Create(int serviceId, DateTime? date)
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        
-         [AllowAnonymous]
 
-public IActionResult WeekView(int serviceId, int weekOffset = 0)
-{
-    var service = _context.Services.FirstOrDefault(s => s.Id == serviceId);
-    if (service == null)
-        return NotFound();
+        [AllowAnonymous]
 
-    var today = DateTime.Today.AddDays(weekOffset * 7);
-    int diff = (7 + (today.DayOfWeek - DayOfWeek.Monday)) % 7;
-    var weekStart = today.AddDays(-diff);
-    var weekDays = Enumerable.Range(0, 7).Select(i => weekStart.AddDays(i)).ToList();
+        public IActionResult WeekView(int serviceId, int weekOffset = 0)
+        {
+            var service = _context.Services.FirstOrDefault(s => s.Id == serviceId);
+            if (service == null)
+                return NotFound();
 
-    var bookings = _context.Bookings
-        .Where(b => b.ServiceId == serviceId &&
-                    b.Date.Date >= weekStart &&
-                    b.Date.Date < weekStart.AddDays(7))
-        .ToList();
+            var today = DateTime.Today.AddDays(weekOffset * 7);
+            int diff = (7 + (today.DayOfWeek - DayOfWeek.Monday)) % 7;
+            var weekStart = today.AddDays(-diff);
+            var weekDays = Enumerable.Range(0, 7).Select(i => weekStart.AddDays(i)).ToList();
 
-    var model = new WeekViewModel
-    {
-        ServiceId = service.Id,
-        ServiceName = service.ServiceName,
-        WeekDays = weekDays,
-        Bookings = bookings,
-        WeekOffset = weekOffset
-    };
+            var bookings = _context.Bookings
+                .Where(b => b.ServiceId == serviceId &&
+                            b.Date.Date >= weekStart &&
+                            b.Date.Date < weekStart.AddDays(7))
+                .ToList();
 
-    return View(model);
-}
+            var model = new WeekViewModel
+            {
+                ServiceId = service.Id,
+                ServiceName = service.ServiceName,
+                WeekDays = weekDays,
+                Bookings = bookings,
+                WeekOffset = weekOffset
+            };
+
+            return View(model);
+        }
+
+ public async Task<IActionResult> Bookings()
+        {
+            var bookings = await _context.Bookings
+                .Include(b => b.Service)
+                .ToListAsync();
+
+            return View(bookings);
+        }
+    }
 
 
 
     }
-}
+

@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\BeautySalonBooking.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\46764\\BeautySalonBooking\\beautysalonbooking\\wwwroot\\bkg.jpg",
+      "PackagePath": "staticwebassets\\bkg.jpg"
+    },
+    {
       "Id": "C:\\Users\\46764\\BeautySalonBooking\\beautysalonbooking\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\46764\\BeautySalonBooking\\beautysalonbooking\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\46764\\BeautySalonBooking\\beautysalonbooking\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
     },
     {
       "Id": "C:\\Users\\46764\\BeautySalonBooking\\beautysalonbooking\\wwwroot\\js\\site.js",

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6jFYh8isJGXyliNuiDgoU9EoPxrY5Akd8iCbEQ+T0Vw=",
+  "Hash": "A2MNx5QKbNJoFel5hah2r4YwyqoTruUVECPlBe9CVAk=",
   "Source": "BeautySalonBooking",
   "BasePath": "_content/BeautySalonBooking",
   "Mode": "Default",
@@ -1195,6 +1195,25 @@
       "OriginalItemSpec": "C:\\Users\\46764\\BeautySalonBooking\\beautysalonbooking\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BeautySalonBooking.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\46764\\BeautySalonBooking\\beautysalonbooking\\wwwroot\\bkg.jpg",
+      "SourceId": "BeautySalonBooking",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\46764\\BeautySalonBooking\\beautysalonbooking\\wwwroot\\",
+      "BasePath": "_content/BeautySalonBooking",
+      "RelativePath": "bkg.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\bkg.jpg"
+    },
+    {
       "Identity": "C:\\Users\\46764\\BeautySalonBooking\\beautysalonbooking\\wwwroot\\css\\site.css",
       "SourceId": "BeautySalonBooking",
       "SourceType": "Discovered",
@@ -1231,6 +1250,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\46764\\BeautySalonBooking\\beautysalonbooking\\wwwroot\\favicon.png",
+      "SourceId": "BeautySalonBooking",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\46764\\BeautySalonBooking\\beautysalonbooking\\wwwroot\\",
+      "BasePath": "_content/BeautySalonBooking",
+      "RelativePath": "favicon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.png"
     },
     {
       "Identity": "C:\\Users\\46764\\BeautySalonBooking\\beautysalonbooking\\wwwroot\\js\\site.js",
