@@ -11,6 +11,7 @@ namespace BeautySalonBooking.Models
 
         public decimal Price { get; set; }
 
-        public int DurationMinutes { get; set; } // Optional
+        public int DurationMinutes { get; set; } 
+         public string Description { get; set; }
     }
 }

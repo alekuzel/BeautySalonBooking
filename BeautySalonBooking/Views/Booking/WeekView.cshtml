@@ -97,7 +97,7 @@
                 // Available slot clickable
                 <td>
                     <a href="@Url.Action("Create", "Booking", new { serviceId = Model.ServiceId, date = slotStart.ToString("o") })">
-                        @($"{hour}-{hour + 1}") - Available
+                        @($"{hour}-{hour + 1}") Available
                     </a>
                 </td>
             }
