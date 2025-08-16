@@ -48,7 +48,11 @@
                             </li>
                         }
                     </ul>
-                    <partial name="_LoginPartial" />
+                    @if (ViewData["ShowAuthLinks"] as bool? == true)
+{
+    <partial name="_LoginPartial" />
+}
+
                 </div>
             </div>
         </nav>

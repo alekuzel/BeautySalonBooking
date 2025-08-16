@@ -20,7 +20,14 @@ public class HomeController : Controller
 
     public IActionResult About()
     {
-    return View();
+        return View();
     }
+    
+    public IActionResult Backdoor()
+{
+    ViewData["ShowAuthLinks"] = true;
+    return View();
+}
+
 
 }
