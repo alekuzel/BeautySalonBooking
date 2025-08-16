@@ -13,23 +13,45 @@
 }
 
  .btn-primary {
-        background-color: #a32a4aff;
+        background-color: #860c2dff;
         border-color: #d4afb9;
         color: white;
         padding: 0.5rem 1.5rem;
         border-radius: 30px;
         font-weight: 500;
         transition: all 0.3s ease;
+        text-decoration: none !important;
     }
 
     .btn-primary:hover {
         background-color: #963452ff; 
-        border-color: #c895a4;
+        border-color: #7c3148ff;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        text-decoration: none !important;
     }
 
-/* Base Styles */
+   .btn-info{
+         background-color: #135f4cff;
+        border-color: #afc0d4ff;
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 30px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        text-decoration: none !important;
+   }
+
+    .btn-info:hover {
+         background-color: #044635ff;
+        border-color: #657f9cff;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        text-decoration: none !important;
+    }
+
+
 html {
     font-size: 14px;
     position: relative;
@@ -195,7 +217,7 @@ footer a:hover {
     text-decoration: none;
 }
 
-/* Service Cards with better contrast */
+
 .service-card {
     background: var(--card-bg);
     border-radius: 12px;
@@ -223,7 +245,47 @@ footer a:hover {
     margin-bottom: 20px;
 }
 
-/* Focus styles for accessibility */
+
+.about-page {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.about-title {
+    color: var(--primary-dark);
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+
+.about-title:after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    background: var(--primary-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.about-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    line-height: 1.8;
+}
+
+
+
+
+
 .btn:focus, .btn:active:focus, 
 .btn-link.nav-link:focus, 
 .form-control:focus, 
@@ -233,7 +295,7 @@ footer a:hover {
 }
 
     .btn-edit {
-        background-color: #9cadce; /* Your accent color */
+         background-color: #476aafff;
         border-color: #9cadce;
         color: white;
         padding: 0.25rem 0.75rem;
@@ -241,10 +303,11 @@ footer a:hover {
         font-weight: 500;
         transition: all 0.3s ease;
         margin-right: 0.5rem;
+        text-decoration: none !important;
     }
 
     .btn-edit:hover {
-        background-color: #7e8fc0; /* Darker shade */
+        background-color: #2e417cff; 
         border-color: #7e8fc0;
         color: white;
         transform: translateY(-2px);
@@ -252,17 +315,18 @@ footer a:hover {
     }
 
     .btn-delete {
-        background-color: #d4afb9; /* Your primary color */
+        background-color: #c54668ff; 
         border-color: #d4afb9;
         color: white;
         padding: 0.25rem 0.75rem;
         border-radius: 30px;
         font-weight: 500;
         transition: all 0.3s ease;
+        text-decoration: none !important;
     }
 
     .btn-delete:hover {
-        background-color: #c895a4; /* Darker shade */
+         background-color: #852844ff;
         border-color: #c895a4;
         color: white;
         transform: translateY(-2px);
@@ -291,7 +355,7 @@ footer a:hover {
         background-color: rgba(212, 175, 185, 0.1); 
     }
 
-/* Responsive Adjustments */
+
 @media (max-width: 768px) {
     .hero-section {
         height: 400px;
@@ -310,6 +374,15 @@ footer a:hover {
     .hero-section {
         height: 350px;
     }
+
+   
+    .about-title {
+        font-size: 2rem;
+    }
+    
+    .about-content {
+        padding: 1.5rem;
+    }
     
     .hero-content h1 {
         font-size: 2rem;
@@ -318,4 +391,92 @@ footer a:hover {
     .service-card {
         padding: 20px;
     }
+
+
+ .btn-edit {
+        background-color: #476aafff;
+        border-color: #9cadce;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 30px;
+        font-weight: 040;
+        transition: all 0.3s ease;
+        margin-right: 0.5rem;
+        margin-top: 0.5rem;
+        text-decoration: none !important;
+    }
+
+    .btn-edit:hover {
+        background-color: #2e417cff; 
+        border-color: #7e8fc0;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-decoration: none !important;
+    }
+
+    .btn-delete {
+        background-color: #c54668ff; 
+        border-color: #d4afb9;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        margin-top: 0.5rem;
+        text-decoration: none !important;
+    }
+
+    .btn-delete:hover {
+        background-color: #852844ff;
+        border-color: #c895a4;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-decoration: none !important;
+    }
+
+
+    
+ .btn-primary {
+        background-color: #860c53ff;
+        border-color: #d4afb9;
+        color: white;
+        padding: 0.15rem 1rem;
+        border-radius: 20px;
+        font-weight: 400;
+        transition: all 0.3s ease;
+        margin-top: 0.5rem;
+        text-decoration: none !important;
+    }
+
+    .btn-primary:hover {
+        background-color: #881135ff; 
+        border-color: #7c3148ff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        text-decoration: none !important;
+    }
+
+   .btn-info{
+         background-color: #135f4cff;
+        border-color: #afc0d4ff;
+        color: white;
+        padding: 0.15rem 1rem;
+        border-radius: 20px;
+        font-weight: 400;
+        transition: all 0.3s ease;
+        margin-top: 0.5rem;
+        text-decoration: none !important;
+   }
+
+     .btn-info:hover{
+         background-color: #054233ff;
+        border-color: #afc0d4ff;
+          transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        text-decoration: none !important;
+   }
+
+
 }

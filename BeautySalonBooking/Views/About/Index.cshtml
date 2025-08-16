@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = Model.Title;
 }
+<div class="about-page">
+<h1 class="about-title">@Model.Title</h1>
+<div class="about-content">@Html.Raw(Model.Content)</div>
 
-<h1>@Model.Title</h1>
-<div>@Html.Raw(Model.Content)</div>
+</div>

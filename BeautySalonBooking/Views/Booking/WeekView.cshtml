@@ -60,12 +60,12 @@
 <h3>@monthDisplay</h3>
 
 <div class="nav-buttons">
-    <a class="btn btn-secondary" href="@Url.Action("WeekView", "Booking", new { serviceId = Model.ServiceId, weekOffset = Model.WeekOffset - 1 })">Föregående vecka</a>
-    <a class="btn btn-secondary" href="@Url.Action("WeekView", "Booking", new { serviceId = Model.ServiceId, weekOffset = Model.WeekOffset + 1 })">Nästa vecka</a>
+    <a class="btn btn-secondary" href="@Url.Action("WeekView", "Booking", new { serviceId = Model.ServiceId, weekOffset = Model.WeekOffset - 1 })">Previous Week</a>
+    <a class="btn btn-secondary" href="@Url.Action("WeekView", "Booking", new { serviceId = Model.ServiceId, weekOffset = Model.WeekOffset + 1 })">Next Week</a>
 </div>
 
 <div class="week-calendar">
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 @foreach (var day in Model.WeekDays)

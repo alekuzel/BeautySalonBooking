@@ -1,21 +1,21 @@
 @model List<BeautySalonBooking.Models.Service>
 
 @{
-    ViewData["Title"] = "Hantera tjänster";
+    ViewData["Title"] = "Manage Services";
 }
 
-<h1>Hantera tjänster</h1>
+<h1>Manage services</h1>
 
-<a class="btn btn-primary mb-3" href="@Url.Action("Create", "Service")">Skapa ny tjänst</a>
+<a class="btn btn-primary mb-3" href="@Url.Action("Create", "Service")">Create a new service</a>
 
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Namn</th>
-            <th>Pris (kr)</th>
-            <th>Varaktighet (min)</th>
-            <th>Beskrivning</th>
-            <th>Åtgärder</th>
+            <th>Name</th>
+            <th>Price (kr)</th>
+            <th>Duration (min)</th>
+            <th>Description</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -27,9 +27,9 @@
             <td>@service.DurationMinutes</td>
             <td>@service.Description</td>
             <td>
-                <a class="btn btn-edit btn-sm" href="@Url.Action("Edit", "Service", new { id = service.Id })">Redigera
+                <a class="btn btn-edit btn-sm" href="@Url.Action("Edit", "Service", new { id = service.Id })">Edit
                 </a>
-                <a class="btn btn-delete btn-sm" href="@Url.Action("Delete", "Service", new { id = service.Id })">Ta bort
+                <a class="btn btn-delete btn-sm" href="@Url.Action("Delete", "Service", new { id = service.Id })">Detele
                 </a>
             </td>
         </tr>
@@ -39,43 +39,8 @@
 
 
 <style>
-    /* Button styles matching your salon theme */
-    .btn-edit {
-        background-color: #9cadce;
-        border-color: #9cadce;
-        color: white;
-        padding: 0.25rem 0.75rem;
-        border-radius: 30px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        margin-right: 0.5rem;
-    }
 
-    .btn-edit:hover {
-        background-color: #7e8fc0; /* Darker shade */
-        border-color: #7e8fc0;
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
 
-    .btn-delete {
-        background-color: #d4afb9; 
-        border-color: #d4afb9;
-        color: white;
-        padding: 0.25rem 0.75rem;
-        border-radius: 30px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
-
-    .btn-delete:hover {
-        background-color: #c895a4; /* Darker shade */
-        border-color: #c895a4;
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
 
   
     .table {

@@ -4,14 +4,14 @@
     ViewData["Title"] = "Services";
 }
 
-<h2>Våra Tjänster</h2>
+<h2>Our services</h2>
 
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Tjänst</th>
-            <th>Varaktighet</th>
-            <th>Pris</th>
+            <th>Service</th>
+            <th>Duration</th>
+            <th>Price</th>
             <th></th>
         </tr>
     </thead>
@@ -20,10 +20,10 @@
     {
         <tr>
             <td>@item.ServiceName</td>
-            <td>@item.DurationMinutes minuter</td>
+            <td>@item.DurationMinutes min</td>
             <td>@item.Price.ToString("0.00") kr</td>
             <td>
-                <a asp-controller="Booking" asp-action="Create" asp-route-serviceId="@item.Id" class="btn btn-primary">Boka</a>
+                <a asp-controller="Booking" asp-action="Create" asp-route-serviceId="@item.Id" class="btn btn-primary">Book</a>
             </td>
         </tr>
     }

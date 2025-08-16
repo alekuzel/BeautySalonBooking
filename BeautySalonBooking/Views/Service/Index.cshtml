@@ -1,17 +1,17 @@
 @model List<BeautySalonBooking.Models.Service>
 
 @{
-    ViewData["Title"] = "Tjänster";
+    ViewData["Title"] = "Services";
 }
 
-<h1>Våra tjänster</h1>
+<h1>Our services</h1>
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>Namn</th>
-            <th>Pris (kr)</th>
-            <th>Varaktighet (min)</th>
+            <th>Name</th>
+            <th>Price (kr)</th>
+            <th>Duration (min)</th>
             <th></th>
         </tr>
     </thead>
@@ -23,8 +23,8 @@
             <td>@service.Price.ToString("0.00")</td>
             <td>@service.DurationMinutes</td>
             <td>
-                <a class="btn btn-info" href="@Url.Action("Details", "Service", new { id = service.Id })">Mer info</a>
-                <a class="btn btn-success" href="@Url.Action("WeekView", "Booking", new { serviceId = service.Id })">Boka</a>
+                <a class="btn-info" href="@Url.Action("Details", "Service", new { id = service.Id })">More info</a>
+                <a class="btn-primary" href="@Url.Action("WeekView", "Booking", new { serviceId = service.Id })">Book</a>
             </td>
         </tr>
     }

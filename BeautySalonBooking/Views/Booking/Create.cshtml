@@ -4,13 +4,13 @@
     var service = ViewData["Service"] as BeautySalonBooking.Models.Service;
 }
 
-<h2>Boka en tid för @service?.ServiceName</h2>
+<h2>Book a time for @service?.ServiceName</h2>
 
 <form asp-action="Create" method="post">
     <input type="hidden" name="ServiceId" value="@Model.ServiceId" />
 
     <div class="form-group">
-        <label>Tjänst</label>
+        <label>Service</label>
         <input class="form-control" value="@service?.ServiceName" disabled />
     </div>
 
@@ -23,36 +23,36 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="FirstName" class="control-label">Förnamn</label>
+        <label asp-for="FirstName" class="control-label">Name</label>
         <input asp-for="FirstName" class="form-control" />
         <span asp-validation-for="FirstName" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="LastName" class="control-label">Efternamn</label>
+        <label asp-for="LastName" class="control-label">Last name</label>
         <input asp-for="LastName" class="form-control" />
         <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Phone" class="control-label">Telefonnummer</label>
+        <label asp-for="Phone" class="control-label">Phone number</label>
         <input asp-for="Phone" class="form-control" />
         <span asp-validation-for="Phone" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Email" class="control-label">E-post</label>
+        <label asp-for="Email" class="control-label">E-mail</label>
         <input asp-for="Email" class="form-control" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Comment" class="control-label">Kommentar</label>
+        <label asp-for="Comment" class="control-label">Comment</label>
         <textarea asp-for="Comment" class="form-control"></textarea>
         <span asp-validation-for="Comment" class="text-danger"></span>
     </div>
 
-    <button class="btn btn-primary" type="submit">Boka</button>
+    <button class="btn btn-primary" type="submit">Book</button>
 </form>
 
 @section Scripts {

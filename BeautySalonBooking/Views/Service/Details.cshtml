@@ -1,17 +1,17 @@
 @model BeautySalonBooking.Models.Service
 
 @{
-    ViewData["Title"] = "Detaljer för tjänst";
+    ViewData["Title"] = "Service details";
 }
 
 <h2>@Model.ServiceName</h2>
 
-<p><strong>Pris:</strong> @Model.Price.ToString("0.00") kr</p>
-<p><strong>Varaktighet:</strong> @Model.DurationMinutes minuter</p>
-<p><strong>Beskrivning:</strong></p>
+<p><strong>Price:</strong> @Model.Price.ToString("0.00") kr</p>
+<p><strong>Duration:</strong> @Model.DurationMinutes minutes</p>
+<p><strong>Description:</strong></p>
 <p>@Model.Description</p>
 
 <hr />
 
-<a class="btn btn-success" href="@Url.Action("WeekView", "Booking", new { serviceId = Model.Id })">Boka denna tjänst</a>
-<a class="btn btn-secondary" href="@Url.Action("Index", "Service")">Tillbaka</a>
+<a class="btn btn-success" href="@Url.Action("WeekView", "Booking", new { serviceId = Model.Id })">Confirm booking</a>
+<a class="btn btn-secondary" href="@Url.Action("Index", "Service")">Return</a>
