@@ -127,9 +127,6 @@ C:\Users\46764\BeautySalonBooking\beautysalonbooking\obj\Debug\net8.0\staticweba
 C:\Users\46764\BeautySalonBooking\beautysalonbooking\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.BeautySalonBooking.props
 C:\Users\46764\BeautySalonBooking\beautysalonbooking\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.BeautySalonBooking.props
 C:\Users\46764\BeautySalonBooking\beautysalonbooking\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\46764\BeautySalonBooking\beautysalonbooking\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
-C:\Users\46764\BeautySalonBooking\beautysalonbooking\obj\Debug\net8.0\scopedcss\bundle\BeautySalonBooking.styles.css
-C:\Users\46764\BeautySalonBooking\beautysalonbooking\obj\Debug\net8.0\scopedcss\projectbundle\BeautySalonBooking.bundle.scp.css
 C:\Users\46764\BeautySalonBooking\beautysalonbooking\obj\Debug\net8.0\BeautySa.0D5C806D.Up2Date
 C:\Users\46764\BeautySalonBooking\beautysalonbooking\obj\Debug\net8.0\BeautySalonBooking.dll
 C:\Users\46764\BeautySalonBooking\beautysalonbooking\obj\Debug\net8.0\refint\BeautySalonBooking.dll

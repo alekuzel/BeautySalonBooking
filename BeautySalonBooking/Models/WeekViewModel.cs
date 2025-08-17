@@ -14,8 +14,7 @@ namespace BeautySalonBooking.Models
         public List<DateTime> WeekDays { get; set; }
         public List<Booking> Bookings { get; set; }
 
-        // Add this property:
-        public int WeekOffset { get; set; } = 0; // 0 = current week, +1 next week, -1 previous week, etc.
+        public int WeekOffset { get; set; } = 0; // 0 = current week, +1 will be next week, -1 previous week, etc.
     }
 }
 
