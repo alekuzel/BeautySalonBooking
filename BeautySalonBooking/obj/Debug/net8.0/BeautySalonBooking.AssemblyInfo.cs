@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BeautySalonBooking")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b103aab861e6bfa20cddd022be701e74d132464")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70f342e3c2bc5d3bbd2514faa12f02424e7e3097")]
 [assembly: System.Reflection.AssemblyProductAttribute("BeautySalonBooking")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BeautySalonBooking")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
