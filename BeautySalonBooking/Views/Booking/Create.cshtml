@@ -18,7 +18,7 @@
         <label asp-for="Date" class="control-label"></label>
         <!-- Make Date readonly, formatted as yyyy-MM-ddTHH:mm to match datetime-local input -->
         <input asp-for="Date" class="form-control" type="datetime-local" readonly 
-               value="@Model.Date.ToString("yyyy-MM-ddTHH:mm")" />
+               value="@Model.Date.ToString("yyyy-MM-ddTHH:mm")"/>
         <span asp-validation-for="Date" class="text-danger"></span>
     </div>
 

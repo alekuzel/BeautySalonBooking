@@ -19,21 +19,26 @@
         </tr>
     </thead>
     <tbody>
-    @foreach (var service in Model)
-    {
-        <tr>
-            <td>@service.ServiceName</td>
-            <td>@service.Price.ToString("0.00")</td>
-            <td>@service.DurationMinutes</td>
-            <td>@service.Description</td>
-            <td>
-                <a class="btn btn-edit btn-sm" href="@Url.Action("Edit", "Service", new { id = service.Id })">Edit
-                </a>
-                <a class="btn btn-delete btn-sm" href="@Url.Action("Delete", "Service", new { id = service.Id })">Detele
-                </a>
-            </td>
-        </tr>
-    }
+   @foreach (var service in Model)
+{
+    <tr>
+        <td>@service.ServiceName</td>
+        <td>@service.Price.ToString("0.00")</td>
+        <td>@service.DurationMinutes</td>
+        <td>@service.Description</td>
+        <td>
+            <a class="btn btn-edit btn-sm" 
+               href="@Url.Action("Edit", "Service", new { id = service.Id })">Edit</a>
+
+            <form asp-action="Delete" asp-route-id="@service.Id" method="post" 
+                  style="display:inline;" 
+                  onsubmit="return confirm('Are you sure you want to remove this service?');">
+                <button type="submit" class="btn btn-delete btn-sm">Delete</button>
+            </form>
+        </td>
+    </tr>
+}
+
     </tbody>
 </table>
 

@@ -25,7 +25,7 @@ namespace BeautySalonBooking.Controllers
             return View(services);
         }
 
-        // GET: /Service/Create (Admin only)
+        // GET: /Service/Create (logged in users only)
         public IActionResult Create()
         {
             return View();
@@ -40,9 +40,9 @@ namespace BeautySalonBooking.Controllers
             {
                 _context.Services.Add(service);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Manage));
             }
-            return View(service);
+            return RedirectToAction(nameof(Manage));
         }
 
         // GET: /Service/Details/5
@@ -92,30 +92,19 @@ public IActionResult Manage()
 }
 
 
-        // GET: /Service/Delete/5
-        public IActionResult Delete(int id)
-        {
-            var service = _context.Services.FirstOrDefault(s => s.Id == id);
-            if (service == null)
-                return NotFound();
+   [HttpPost]
+public async Task<IActionResult> Delete(int id)
+{
+    var service = await _context.Services.FindAsync(id);
+    if (service != null)
+    {
+        _context.Services.Remove(service);
+        await _context.SaveChangesAsync();
+    }
+    return RedirectToAction(nameof(Manage));
+}
 
-            return View(service);
-        }
 
         
-
-        // POST: /Service/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var service = _context.Services.FirstOrDefault(s => s.Id == id);
-            if (service != null)
-            {
-                _context.Services.Remove(service);
-                await _context.SaveChangesAsync();
-            }
-            return RedirectToAction(nameof(Index));
-        }
     }
 }

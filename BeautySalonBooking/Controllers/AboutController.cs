@@ -36,7 +36,7 @@ namespace BeautySalonBooking.Controllers
             var about = _context.AboutPages.FirstOrDefault();
             if (about == null)
             {
-                about = new AboutPage { Title = "Om oss" };
+                about = new AboutPage { Title = "About us" };
                 _context.AboutPages.Add(about);
                 _context.SaveChanges();
             }
